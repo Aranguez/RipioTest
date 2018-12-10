@@ -24,16 +24,21 @@ export default class SendBtc extends Component {
     }
 
     checkForm = (addressBtc, amount) => { //checkea errores del formulario
-        // checkerrores
-        if (addressBtc !== 'address correcto') {
-            setTimeout(() => {
-                this.setState({
-                    errorAddress: {
-                        error: true,
-                        msg: 'address incorrecto'
-                    }
-                })
-            }, 500)
+        if (addressBtc.length === 0) {
+            this.setState({
+                errorAddress: {
+                    error: true,
+                    msg: 'ingrese un adrress btc'
+                }
+            })
+            return false
+        } else if (addressBtc !== 'address correcto'){
+            this.setState({
+                errorAddress: {
+                    error: true,
+                    msg: 'address incorrecto'
+                }
+            })
             return false
         } else if (amount > this.state.totalAmount) {
             console.error('no puede exceder su monto')
